@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/nmarvila/simple-bank-api/issues"
   },
-  "homepage": "https://github.com/nmarvila/simple-bank-api#readme"
+  "homepage": "https://github.com/nmarvila/simple-bank-api#readme",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
 }
