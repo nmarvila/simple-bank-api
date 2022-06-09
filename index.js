@@ -39,6 +39,16 @@ app.post('/event', (req, res) => {
             contas.push(c)
             res.status(201).send({ 'destination': c })
         }
+    } else if (tipo == 'withdraw') {
+        let conta = contas.find(c => c.id == destino)
+
+        if (conta != undefined) {
+            conta.balance -= valor
+            res.status(201).send({ 'destination': conta })
+        }
+        else {
+            res.sendStatus(404)
+        }
     }
 })
 
