@@ -55,9 +55,14 @@ app.post('/event', (req, res) => {
         let contaOrigem = contas.find(c => c.id == origem)
         let contaDestino = contas.find(c => c.id == destino)
 
-        if (contaOrigem != undefined && contaDestino != undefined) {
+        if (contaOrigem != undefined) {
             contaOrigem.balance -= valor
-            contaDestino.balance += valor
+            if (contaDestino != undefined) {
+                contaDestino.balance += valor
+            } else {
+                contaDestino = { 'id': destino, 'balance': valor }
+                contas.push(contaDestino)
+            }
             res.status(201).send({ 'origin': contaOrigem, 'destination': contaDestino })
         }
         else {
