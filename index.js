@@ -50,6 +50,18 @@ app.post('/event', (req, res) => {
         else {
             res.sendStatus(404)
         }
+    } else if (tipo == 'transfer') {
+        let contaOrigem = contas.find(c => c.id == origem)
+        let contaDestino = contas.find(c => c.id == destino)
+
+        if (contaOrigem != undefined && contaDestino != undefined) {
+            contaOrigem.balance -= valor
+            contaDestino.balance += valor
+            res.status(201).send({ 'origin': contaOrigem, 'destination': contaDestino })
+        }
+        else {
+            res.sendStatus(404)
+        }
     }
 })
 
