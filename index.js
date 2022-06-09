@@ -3,7 +3,7 @@ const bodyParser = require('body-parser')
 const app = express()
 const port = 3000
 
-let contas = [{ "id": 1, "balance": 100 }]
+let contas = []
 
 app.use(bodyParser.json())
 
