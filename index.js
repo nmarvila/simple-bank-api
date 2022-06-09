@@ -17,9 +17,10 @@ app.post('/reset', (req, res) => {
 })
 
 app.get('/balance', (req, res) => {
-    let conta = req.query.account_id
+    let id = req.query.account_id
+    let conta = contas.find(c => c.id == id)
 
-    contas.length > 0 ? contas.find(c => c.id == conta ? res.send(c.balance.toString()) : res.sendStatus(404)) : res.sendStatus(404)
+    conta != undefined ? res.send(conta.balance.toString()) : res.sendStatus(404)
 })
 
 app.post('/event', (req, res) => {
