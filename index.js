@@ -1,9 +1,12 @@
 const express = require('express')
+const bodyParser = require('body-parser')
 const app = express()
 const port = 3000
 let contas = [
     { "id": 1, "balance": 100 }
 ]
+
+app.use(bodyParser.json())
 
 app.get('/', (req, res) => {
     res.send('Simple Bank API')
