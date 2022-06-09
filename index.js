@@ -19,7 +19,7 @@ app.post('/reset', (req, res) => {
 app.get('/balance', (req, res) => {
     let conta = req.query.account_id
 
-    contas.length > 0 ? contas.find((c) => c.id == conta ? res.send(c.balance.toString()) : res.sendStatus(404)) : res.sendStatus(404)
+    contas.length > 0 ? contas.find(c => c.id == conta ? res.send(c.balance.toString()) : res.sendStatus(404)) : res.sendStatus(404)
 })
 
 app.post('/event', (req, res) => {
@@ -28,7 +28,7 @@ app.post('/event', (req, res) => {
     let valor = req.body.amount
 
     if (tipo == 'deposit') {
-        let conta = contas.find((c) => c.id == destino)
+        let conta = contas.find(c => c.id == destino)
 
         if (conta != undefined) {
             conta.balance += valor
