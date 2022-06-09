@@ -24,6 +24,7 @@ app.get('/balance', (req, res) => {
 
 app.post('/event', (req, res) => {
     let tipo = req.body.type
+    let origem = req.body.origin
     let destino = req.body.destination
     let valor = req.body.amount
 
@@ -40,11 +41,11 @@ app.post('/event', (req, res) => {
             res.status(201).send({ 'destination': c })
         }
     } else if (tipo == 'withdraw') {
-        let conta = contas.find(c => c.id == destino)
+        let conta = contas.find(c => c.id == origem)
 
         if (conta != undefined) {
             conta.balance -= valor
-            res.status(201).send({ 'destination': conta })
+            res.status(201).send({ 'origin': conta })
         }
         else {
             res.sendStatus(404)
