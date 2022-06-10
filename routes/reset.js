@@ -1,8 +1,9 @@
 const express = require('express')
 const router = express.Router()
+let contas = require('../repository/contas')
 
 router.post('/', (req, res) => {
-    contas = []
+    contas.contas = []
     res.sendStatus(200)
 })
 

@@ -1,12 +1,12 @@
 const express = require('express')
 const bodyParser = require('body-parser')
+const contas = require('./repository/contas')
 
 const resetRoute = require('./routes/reset')
+const balanceRoute = require('./routes/balance')
 
 const app = express()
 const port = 3000
-
-let contas = []
 
 app.use(bodyParser.json())
 
@@ -15,8 +15,7 @@ app.get('/', (req, res) => {
 })
 
 app.use('/reset', resetRoute)
-
-app.get('/balance', (req, res) => contas.find(c => c.id == req.query.account_id ? res.send(c.balance.toString()) : undefined) ?? res.status(404).send('0'))
+app.use('/balance', balanceRoute)
 
 app.post('/event', (req, res) => {
     switch (req.body.type) {
