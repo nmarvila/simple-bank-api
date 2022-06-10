@@ -16,7 +16,7 @@ app.post('/reset', (req, res) => {
     res.sendStatus(200)
 })
 
-app.get('/balance', (req, res) => contas.find(c => c.id == req.query.account_id ? res.send(c.balance.toString()) : undefined) == undefined ? res.status(404).send("0") : undefined)
+app.get('/balance', (req, res) => contas.find(c => c.id == req.query.account_id ? res.send(c.balance.toString()) : undefined) ?? res.status(404).send("0"))
 
 app.post('/event', (req, res) => {
     let tipo = req.body.type
