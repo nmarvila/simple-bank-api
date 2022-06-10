@@ -16,7 +16,7 @@ app.post('/reset', (req, res) => {
     res.sendStatus(200)
 })
 
-app.get('/balance', (req, res) => contas.find(c => c.id == req.query.account_id ? res.send(c.balance.toString()) : undefined) ?? res.status(404).send("0"))
+app.get('/balance', (req, res) => contas.find(c => c.id == req.query.account_id ? res.send(c.balance.toString()) : undefined) ?? res.status(404).send('0'))
 
 app.post('/event', (req, res) => {
     let tipo = req.body.type
@@ -41,7 +41,7 @@ app.post('/event', (req, res) => {
             res.status(201).send({ 'origin': conta })
         }
         else {
-            res.status(404).send("0")
+            res.status(404).send('0')
         }
     } else if (tipo == 'transfer') {
         let contaOrigem = contas.find(c => c.id == origem)
@@ -58,7 +58,7 @@ app.post('/event', (req, res) => {
             res.status(201).send({ 'origin': contaOrigem, 'destination': contaDestino })
         }
         else {
-            res.status(404).send("0")
+            res.status(404).send('0')
         }
     }
 })
