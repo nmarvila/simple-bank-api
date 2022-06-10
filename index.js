@@ -1,5 +1,8 @@
 const express = require('express')
 const bodyParser = require('body-parser')
+
+const resetRoute = require('./routes/reset')
+
 const app = express()
 const port = 3000
 
@@ -11,10 +14,7 @@ app.get('/', (req, res) => {
     res.send('Simple Bank API')
 })
 
-app.post('/reset', (req, res) => {
-    contas = []
-    res.sendStatus(200)
-})
+app.use('/reset', resetRoute)
 
 app.get('/balance', (req, res) => contas.find(c => c.id == req.query.account_id ? res.send(c.balance.toString()) : undefined) ?? res.status(404).send('0'))
 
