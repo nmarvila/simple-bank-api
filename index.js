@@ -29,21 +29,15 @@ app.post('/event', (req, res) => {
             res.status(201).send({ 'destination': contas.find(c => c.id == req.body.destination ? c.balance += req.body.amount : undefined) ?? contas[contas.push({ 'id': req.body.destination, 'balance': req.body.amount }) - 1] })
             break;
 
+        case 'withdraw':
+            res.status(201).send({ 'origin': contas.find(c => c.id == req.body.origin ? c.balance -= req.body.amount : undefined) ?? res.status(404).send('0') })
+            break;
+
         default:
             break;
     }
 
-    if (tipo == 'withdraw') {
-        let conta = contas.find(c => c.id == origem)
-
-        if (conta != undefined) {
-            conta.balance -= valor
-            res.status(201).send({ 'origin': conta })
-        }
-        else {
-            res.status(404).send('0')
-        }
-    } else if (tipo == 'transfer') {
+    if (tipo == 'transfer') {
         let contaOrigem = contas.find(c => c.id == origem)
         let contaDestino = contas.find(c => c.id == destino)
 
