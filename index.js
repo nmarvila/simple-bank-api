@@ -33,27 +33,16 @@ app.post('/event', (req, res) => {
             res.status(201).send({ 'origin': contas.find(c => c.id == req.body.origin ? c.balance -= req.body.amount : undefined) ?? res.status(404).send('0') })
             break;
 
+        case 'transfer':
+            let contaOrigem = contas.find(c => c.id == req.body.origin) ?? res.status(404).send('0')
+            let contaDestino = contas.find(c => c.id == req.body.destination) ?? contas[contas.push({ 'id': req.body.destination, 'balance': 0 }) - 1]
+            contaOrigem.balance -= valor
+            contaDestino.balance += valor
+            res.status(201).send({ 'origin': contaOrigem, 'destination': contaDestino })
+            break;
+
         default:
             break;
-    }
-
-    if (tipo == 'transfer') {
-        let contaOrigem = contas.find(c => c.id == origem)
-        let contaDestino = contas.find(c => c.id == destino)
-
-        if (contaOrigem != undefined) {
-            contaOrigem.balance -= valor
-            if (contaDestino != undefined) {
-                contaDestino.balance += valor
-            } else {
-                contaDestino = { 'id': destino, 'balance': valor }
-                contas.push(contaDestino)
-            }
-            res.status(201).send({ 'origin': contaOrigem, 'destination': contaDestino })
-        }
-        else {
-            res.status(404).send('0')
-        }
     }
 })
 
