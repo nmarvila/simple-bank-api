@@ -24,19 +24,16 @@ app.post('/event', (req, res) => {
     let destino = req.body.destination
     let valor = req.body.amount
 
-    if (tipo == 'deposit') {
-        let conta = contas.find(c => c.id == destino)
+    switch (tipo) {
+        case 'deposit':
+            res.status(201).send({ 'destination': contas.find(c => c.id == req.body.destination ? c.balance += req.body.amount : undefined) ?? contas[contas.push({ 'id': req.body.destination, 'balance': req.body.amount }) - 1] })
+            break;
 
-        if (conta != undefined) {
-            conta.balance += valor
-            res.status(201).send({ 'destination': conta })
-        }
-        else {
-            let c = { 'id': destino, 'balance': valor }
-            contas.push(c)
-            res.status(201).send({ 'destination': c })
-        }
-    } else if (tipo == 'withdraw') {
+        default:
+            break;
+    }
+
+    if (tipo == 'withdraw') {
         let conta = contas.find(c => c.id == origem)
 
         if (conta != undefined) {
