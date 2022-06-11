@@ -5,7 +5,7 @@ module.exports.resetState = () => {
 }
 
 module.exports.getBalance = (account_id) => {
-    let contaConsultada = contas.find(conta => conta.id == account_id)
+    let contaConsultada = getConta(account_id)
     if (contaConsultada == undefined) {
         return undefined
     } else {
@@ -14,10 +14,10 @@ module.exports.getBalance = (account_id) => {
 }
 
 module.exports.deposit = (account_id, amount) => {
-    let contaDeposito = contas.find(conta => conta.id == account_id)
+    let contaDeposito = getConta(account_id)
     if (contaDeposito == undefined) {
-        let indexConta = contas.push({ 'id': account_id, 'balance': amount }) - 1
-        contaDeposito = contas[indexConta]
+        contas.push({ 'id': account_id, 'balance': amount })
+        contaDeposito = getConta(account_id)
     } else {
         contaDeposito.balance += amount
     }
@@ -25,7 +25,7 @@ module.exports.deposit = (account_id, amount) => {
 }
 
 module.exports.withdraw = (account_id, amount) => {
-    let contaSaque = contas.find(conta => conta.id == account_id)
+    let contaSaque = getConta(account_id)
     if (contaSaque != undefined) {
         contaSaque.balance -= amount
     }
@@ -33,11 +33,11 @@ module.exports.withdraw = (account_id, amount) => {
 }
 
 module.exports.transfer = (origin_account_id, destination_account_id, amount) => {
-    let contaOrigem = contas.find(conta => conta.id == origin_account_id)
-    let contaDestino = contas.find(conta => conta.id == destination_account_id)
+    let contaOrigem = getConta(origin_account_id)
+    let contaDestino = getConta(destination_account_id)
     if (contaDestino == undefined) {
-        let indexConta = contas.push({ 'id': destination_account_id, 'balance': amount }) - 1
-        contaDestino = contas[indexConta]
+        contas.push({ 'id': destination_account_id, 'balance': amount })
+        contaDestino = getConta(destination_account_id)
     } else {
         contaDestino.balance += amount
     }
@@ -45,4 +45,8 @@ module.exports.transfer = (origin_account_id, destination_account_id, amount) =>
         contaOrigem.balance -= amount
     }
     return { contaOrigem, contaDestino }
+}
+
+getConta = (account_id) => {
+    return contas.find(conta => conta.id == account_id)
 }
