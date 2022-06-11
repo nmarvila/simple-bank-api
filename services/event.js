@@ -8,11 +8,10 @@ module.exports.callEvent = (req, res) => {
             break;
 
         case 'withdraw':
-            let contaSaque = contas.contas.find(c => c.id == req.body.origin)
+            let contaSaque = contas.withdraw(req.body.origin, req.body.amount)
             if (contaSaque == undefined) {
                 res.status(404).send('0')
             } else {
-                contaSaque.balance -= req.body.amount
                 res.status(201).send({ 'origin': contaSaque })
             }
             break;

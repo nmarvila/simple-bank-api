@@ -23,3 +23,11 @@ module.exports.deposit = (account_id, amount) => {
     }
     return contaDeposito
 }
+
+module.exports.withdraw = (account_id, amount) => {
+    let contaSaque = contas.find(conta => conta.id == account_id)
+    if (contaSaque != undefined) {
+        contaSaque.balance -= amount
+    }
+    return contaSaque
+}
