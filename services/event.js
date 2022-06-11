@@ -1,4 +1,4 @@
-let accounts = require('../repository/accounts')
+const accounts = require('../repository/accounts')
 
 module.exports.callEvent = (req, res) => {
     switch (req.body.type) {
