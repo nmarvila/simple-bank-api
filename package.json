@@ -1,7 +1,7 @@
 {
-  "name": "ebanx",
+  "name": "simple-bank-api",
   "version": "1.0.0",
-  "description": "",
+  "description": "Simple Bank API",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,7 +10,7 @@
     "type": "git",
     "url": "git+https://github.com/nmarvila/simple-bank-api.git"
   },
-  "author": "",
+  "author": "Nichollas Marvila",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/nmarvila/simple-bank-api/issues"
