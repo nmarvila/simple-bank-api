@@ -20,9 +20,9 @@
 Get balance from an account:
 <pre><code>curl -X 'GET' \
     'http://localhost:3000/balance?account_id=100'
-<code></pre>
+</code></pre>
 
-Create an account or Deposit into an existing account (if the destination id already exists):
+### Create an account or Deposit into an existing account (if the destination id already exists):
 <pre><code>curl -X 'POST' \
     'http://localhost:3000/event' \
     -H 'Content-Type: application/json' \
@@ -31,9 +31,9 @@ Create an account or Deposit into an existing account (if the destination id alr
     "destination":"100",
     "amount":10
 }'
-<code></pre>
+</code></pre>
 
-Withdraw from an existing account:
+### Withdraw from an existing account:
 <pre><code>curl -X 'POST' \
     'http://localhost:3000/event' \
     -H 'Content-Type: application/json' \
@@ -42,9 +42,9 @@ Withdraw from an existing account:
     "origin":"100",
     "amount":5
 }'
-<code></pre>
+</code></pre>
 
-Transfer from an existing account:
+### Transfer from an existing account:
 <pre><code>curl -X 'POST' \
     'http://localhost:3000/event' \
     -H 'Content-Type: application/json' \
@@ -54,12 +54,12 @@ Transfer from an existing account:
     "amount":15
     "destination":"300"
 }'
-<code></pre>
+</code></pre>
 
-Reset the state before starting tests: 
+### Reset the state before starting tests: 
 <pre><code>curl -X 'POST' \
     'http://localhost:3000/reset'
-<code></pre>
+</code></pre>
 
 ## Libraries and Tools
 
