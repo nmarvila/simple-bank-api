@@ -73,7 +73,8 @@ Reset the state before starting tests:
 
 - Clone the repository to your machine
 - Open a terminal in the containing folder of the project
-- Run the command `node index.js`
+- Run the command `npm install` to install the necessary packages
+- Run the command `node index.js` to start the application
 
 After this the API should be running on the address `http://localhost:3000`. To test it, you can use your preferred tool for making HTTP requests ([curl](https://curl.se/), [Postman](https://www.postman.com/), etc).
 
