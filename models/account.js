@@ -7,6 +7,14 @@ class Account {
     getBalance = () => {
         return this.balance.toString()
     }
+
+    withdraw = (amount) => {
+        this.balance -= amount
+    }
+
+    deposit = (amount) => {
+        this.balance += amount
+    }
 }
 
 module.exports = Account

@@ -20,7 +20,7 @@ module.exports.deposit = (account_id, amount) => {
     if (depositAccount == undefined) {
         depositAccount = addAccount(account_id, amount)
     } else {
-        depositAccount.balance += amount
+        depositAccount.deposit(amount)
     }
     return depositAccount
 }
@@ -28,7 +28,7 @@ module.exports.deposit = (account_id, amount) => {
 module.exports.withdraw = (account_id, amount) => {
     let withdrawAccount = getAccount(account_id)
     if (withdrawAccount != undefined) {
-        withdrawAccount.balance -= amount
+        withdrawAccount.withdraw(amount)
     }
     return withdrawAccount
 }
@@ -39,10 +39,10 @@ module.exports.transfer = (origin_account_id, destination_account_id, amount) =>
     if (destinationAccount == undefined) {
         destinationAccount = addAccount(destination_account_id, amount)
     } else {
-        destinationAccount.balance += amount
+        destinationAccount.deposit(amount)
     }
     if (originAccount != undefined) {
-        originAccount.balance -= amount
+        originAccount.withdraw(amount)
     }
     return { originAccount, destinationAccount }
 }
