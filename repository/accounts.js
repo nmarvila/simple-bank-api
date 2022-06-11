@@ -1,3 +1,5 @@
+const Account = require('../models/account')
+
 let accounts = []
 
 module.exports.resetState = () => {
@@ -50,6 +52,6 @@ getAccount = (account_id) => {
 }
 
 addAccount = (account_id, balance) => {
-    accounts.push({ 'id': account_id, 'balance': balance })
+    accounts.push(new Account(account_id, balance))
     return getAccount(account_id)
 }
