@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
-const balance = require('../controllers/balance')
+const balanceController = require('../controllers/balance')
 
-router.get('/', balance.getBalance)
+router.get('/', balanceController.getBalance)
 
 module.exports = router
