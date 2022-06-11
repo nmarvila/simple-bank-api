@@ -31,3 +31,18 @@ module.exports.withdraw = (account_id, amount) => {
     }
     return contaSaque
 }
+
+module.exports.transfer = (origin_account_id, destination_account_id, amount) => {
+    let contaOrigem = contas.find(conta => conta.id == origin_account_id)
+    let contaDestino = contas.find(conta => conta.id == destination_account_id)
+    if (contaDestino == undefined) {
+        let indexConta = contas.push({ 'id': destination_account_id, 'balance': amount }) - 1
+        contaDestino = contas[indexConta]
+    } else {
+        contaDestino.balance += amount
+    }
+    if (contaOrigem != undefined) {
+        contaOrigem.balance -= amount
+    }
+    return { contaOrigem, contaDestino }
+}

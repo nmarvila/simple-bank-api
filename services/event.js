@@ -17,20 +17,12 @@ module.exports.callEvent = (req, res) => {
             break;
 
         case 'transfer':
-            let contaOrigem = contas.contas.find(c => c.id == req.body.origin)
-            let contaDestino = contas.contas.find(c => c.id == req.body.destination)
-            if (contaOrigem == undefined) {
+            let contasResultado = contas.transfer(req.body.origin, req.body.destination, req.body.amount)
+            if (contasResultado.contaOrigem == undefined) {
                 res.status(404).send('0')
             } else {
-                if (contaDestino == undefined) {
-                    let indexConta = contas.contas.push({ 'id': req.body.destination, 'balance': req.body.amount }) - 1
-                    contaDestino = contas.contas[indexConta]
-                } else {
-                    contaDestino.balance -= req.body.amount
-                }
-                contaOrigem.balance -= req.body.amount
+                res.status(201).send({ 'origin': contasResultado.contaOrigem, 'destination': contasResultado.contaDestino })
             }
-            res.status(201).send({ 'origin': contaOrigem, 'destination': contaDestino })
             break;
 
         default:
