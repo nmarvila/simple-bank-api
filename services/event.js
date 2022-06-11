@@ -3,14 +3,8 @@ let contas = require('../repository/contas')
 module.exports.callEvent = (req, res) => {
     switch (req.body.type) {
         case 'deposit':
-            let contaDeposito = contas.contas.find(c => c.id == req.body.destination)
-            if (contaDeposito == undefined) {
-                let indexConta = contas.contas.push({ 'id': req.body.destination, 'balance': req.body.amount }) - 1
-                res.status(201).send({ 'destination': contas.contas[indexConta] })
-            } else {
-                contaDeposito.balance += req.body.amount
-                res.status(201).send({ 'destination': contaDeposito })
-            }
+            let contaDeposito = contas.deposit(req.body.destination, req.body.amount)
+            res.status(201).send({ 'destination': contaDeposito })
             break;
 
         case 'withdraw':
