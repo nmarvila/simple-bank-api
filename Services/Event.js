@@ -1,4 +1,4 @@
-const accounts = require('../repository/accounts')
+const accounts = require('../Repository/Accounts')
 
 module.exports.callEvent = (req, res) => {
     let type = req.body.type

@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const balanceController = require('../controllers/balance')
+const balanceController = require('../Controllers/Balance')
 
 router.get('/', balanceController.getBalance)
 

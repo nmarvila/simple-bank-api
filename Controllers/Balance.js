@@ -1,4 +1,4 @@
-const balanceService = require('../services/balance')
+const balanceService = require('../Services/Balance')
 
 module.exports.getBalance = (req, res) => {
     let balance = balanceService.getBalance(req, res)

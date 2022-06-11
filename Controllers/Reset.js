@@ -1,4 +1,4 @@
-const resetService = require('../services/reset')
+const resetService = require('../Services/Reset')
 
 module.exports.resetState = (req, res) => {
     resetService.resetState(req, res)

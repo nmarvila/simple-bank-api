@@ -1,4 +1,4 @@
-const accounts = require('../repository/accounts')
+const accounts = require('../Repository/Accounts')
 
 module.exports.getBalance = (req, res) => {
     let account_id = req.query.account_id

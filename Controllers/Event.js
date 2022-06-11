@@ -1,4 +1,4 @@
-const eventService = require('../services/event')
+const eventService = require('../Services/Event')
 
 module.exports.callEvent = (req, res) => {
     let type = req.body.type

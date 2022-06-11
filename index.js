@@ -1,9 +1,9 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 
-const resetRoute = require('./routes/reset')
-const balanceRoute = require('./routes/balance')
-const eventRoute = require('./routes/event')
+const resetRoute = require('./Routes/Reset')
+const balanceRoute = require('./Routes/Balance')
+const eventRoute = require('./Routes/Event')
 
 const app = express()
 const port = 3000
