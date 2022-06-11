@@ -1,7 +1,8 @@
 const express = require('express')
 const router = express.Router()
 const contas = require('../repository/contas')
+const balance = require('../controllers/balance')
 
-router.get('/', (req, res) => contas.contas.find(c => c.id == req.query.account_id ? res.send(c.balance.toString()) : undefined) ?? res.status(404).send('0'))
+router.get('/', balance.getBalance)
 
 module.exports = router
