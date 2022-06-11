@@ -1,6 +1,6 @@
-let contas = require('../repository/contas')
+let accounts = require('../repository/accounts')
 
 module.exports.resetState = (req, res) => {
-    contas.resetState()
+    accounts.resetState()
     res.sendStatus(200)
 }
