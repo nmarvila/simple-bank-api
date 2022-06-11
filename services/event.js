@@ -1,14 +1,19 @@
 const accounts = require('../repository/accounts')
 
 module.exports.callEvent = (req, res) => {
-    switch (req.body.type) {
+    let type = req.body.type
+    let destination = req.body.destination
+    let origin = req.body.origin
+    let amount = req.body.amount
+
+    switch (type) {
         case 'deposit':
-            let depositAccount = accounts.deposit(req.body.destination, req.body.amount)
+            let depositAccount = accounts.deposit(destination, amount)
             res.status(201).send({ 'destination': depositAccount })
             break;
 
         case 'withdraw':
-            let withdrawAccount = accounts.withdraw(req.body.origin, req.body.amount)
+            let withdrawAccount = accounts.withdraw(origin, amount)
             if (withdrawAccount == undefined) {
                 res.status(404).send('0')
             } else {
@@ -17,7 +22,7 @@ module.exports.callEvent = (req, res) => {
             break;
 
         case 'transfer':
-            let resultAccounts = accounts.transfer(req.body.origin, req.body.destination, req.body.amount)
+            let resultAccounts = accounts.transfer(origin, destination, amount)
             if (resultAccounts.originAccount == undefined) {
                 res.status(404).send('0')
             } else {
