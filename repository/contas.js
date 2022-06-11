@@ -1,1 +1,5 @@
-exports.contas = []
+let contas = []
+
+module.exports.resetState = () => {
+    contas = []
+}
