@@ -3,6 +3,10 @@ class Account {
         this.id = id
         this.balance = balance
     }
+
+    getBalance = () => {
+        return this.balance.toString()
+    }
 }
 
 module.exports = Account

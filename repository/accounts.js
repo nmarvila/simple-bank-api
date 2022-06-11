@@ -11,7 +11,7 @@ module.exports.getBalance = (account_id) => {
     if (obtainedAccount == undefined) {
         return undefined
     } else {
-        return obtainedAccount.balance.toString()
+        return obtainedAccount.getBalance()
     }
 }
 
