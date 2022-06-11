@@ -16,8 +16,7 @@ module.exports.getBalance = (account_id) => {
 module.exports.deposit = (account_id, amount) => {
     let contaDeposito = getConta(account_id)
     if (contaDeposito == undefined) {
-        addConta(account_id, amount)
-        contaDeposito = getConta(account_id)
+        contaDeposito = addConta(account_id, amount)
     } else {
         contaDeposito.balance += amount
     }
@@ -36,8 +35,7 @@ module.exports.transfer = (origin_account_id, destination_account_id, amount) =>
     let contaOrigem = getConta(origin_account_id)
     let contaDestino = getConta(destination_account_id)
     if (contaDestino == undefined) {
-        addConta(destination_account_id, amount)
-        contaDestino = getConta(destination_account_id)
+        contaDestino = addConta(destination_account_id, amount)
     } else {
         contaDestino.balance += amount
     }
@@ -53,4 +51,5 @@ getConta = (account_id) => {
 
 addConta = (account_id, balance) => {
     contas.push({ 'id': account_id, 'balance': balance })
+    return getConta(account_id)
 }
