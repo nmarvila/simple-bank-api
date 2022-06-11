@@ -48,7 +48,7 @@ module.exports.transfer = (origin_account_id, destination_account_id, amount) =>
 }
 
 getAccount = (account_id) => {
-    return accounts.find(conta => conta.id == account_id)
+    return accounts.find(account => account.id == account_id)
 }
 
 addAccount = (account_id, balance) => {
