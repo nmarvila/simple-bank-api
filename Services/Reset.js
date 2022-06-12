@@ -1,7 +1,5 @@
 class ResetService {
-    constructor(req, res, accountRepository) {
-        this.req = req
-        this.res = res
+    constructor(accountRepository) {
         this.accountRepository = accountRepository
     }
 
