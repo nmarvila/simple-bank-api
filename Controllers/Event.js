@@ -1,9 +1,10 @@
-const eventService = require('../Services/Event')
+const EventService = require('../Services/Event')
+const AccountsRepositoryArrayInstance = require('../Repository/AccountsRepositoryArray')
 
 module.exports.callEvent = (req, res) => {
+    let eventService = new EventService(req, res, AccountsRepositoryArrayInstance)
     let type = req.body.type
-
-    let resultAccounts = eventService.callEvent(req, res)
+    let resultAccounts = eventService.callEvent()
 
     switch (type) {
         case 'deposit':

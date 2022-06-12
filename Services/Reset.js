@@ -1,5 +1,13 @@
-const accounts = require('../Repository/Accounts')
+class ResetService {
+    constructor(req, res, accountRepository) {
+        this.req = req
+        this.res = res
+        this.accountRepository = accountRepository
+    }
 
-module.exports.resetState = (req, res) => {
-    accounts.resetState()
+    resetState = () => {
+        this.accountRepository.resetState()
+    }
 }
+
+module.exports = ResetService

@@ -1,25 +1,33 @@
-const accounts = require('../Repository/Accounts')
+class EventService {
+    constructor(req, res, accountRepository) {
+        this.req = req
+        this.res = res
+        this.accountRepository = accountRepository
+    }
 
-module.exports.callEvent = (req, res) => {
-    let type = req.body.type
-    let destination = req.body.destination
-    let origin = req.body.origin
-    let amount = req.body.amount
+    callEvent = () => {
+        let type = this.req.body.type
+        let destination = this.req.body.destination
+        let origin = this.req.body.origin
+        let amount = this.req.body.amount
 
-    switch (type) {
-        case 'deposit':
-            let depositAccount = accounts.deposit(destination, amount)
-            return depositAccount
+        switch (type) {
+            case 'deposit':
+                let depositAccount = this.accountRepository.deposit(destination, amount)
+                return depositAccount
 
-        case 'withdraw':
-            let withdrawAccount = accounts.withdraw(origin, amount)
-            return withdrawAccount
+            case 'withdraw':
+                let withdrawAccount = this.accountRepository.withdraw(origin, amount)
+                return withdrawAccount
 
-        case 'transfer':
-            let resultAccounts = accounts.transfer(origin, destination, amount)
-            return resultAccounts
+            case 'transfer':
+                let resultAccounts = this.accountRepository.transfer(origin, destination, amount)
+                return resultAccounts
 
-        default:
-            break;
+            default:
+                break;
+        }
     }
 }
+
+module.exports = EventService
