@@ -1,16 +1,9 @@
 class EventService {
-    constructor(req, res, accountRepository) {
-        this.req = req
-        this.res = res
+    constructor(accountRepository) {
         this.accountRepository = accountRepository
     }
 
-    callEvent = () => {
-        let type = this.req.body.type
-        let destination = this.req.body.destination
-        let origin = this.req.body.origin
-        let amount = this.req.body.amount
-
+    callEvent = (type, destination, origin, amount) => {
         switch (type) {
             case 'deposit':
                 let depositAccount = this.accountRepository.deposit(destination, amount)
